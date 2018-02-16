@@ -8,8 +8,8 @@ import java.util.Date;
 public class fileIO
 {
     public void wrTransactionData(String fn, String ln, String ad, String city,
-                                  String state, String zip, String email)
-    {
+                                  String state, String zip, String email, String major, String sport,
+                                  String education_level) {
         // output the gold header information
         FileWriter fwg = null;
         try
@@ -28,7 +28,7 @@ public class fileIO
 
         outg.println(timeStamp + " : "+ fn + " " + ln + " "
                 + ad + " " + city + " " + state + " " + zip + " "
-                + email);
+                + email + " " + major + " " + sport + " " + education_level);
 
         outg.close();
     }

@@ -2,23 +2,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
 
 public class dataEntry extends JFrame
 {
@@ -36,6 +26,9 @@ public class dataEntry extends JFrame
     private JTextField textField_5;
     private JTextField textField_6;
     private JButton btnNewButton_1;
+    private String major = "";
+    private String education_level = "";
+    private String sports = "";
 
     /**
      * Launch the application.
@@ -125,6 +118,12 @@ public class dataEntry extends JFrame
         contentPane.add(textField_6);
         textField_6.setColumns(10);
 
+        // Drop down box
+        JComboBox<Object> comboBox = new JComboBox<Object>();
+        comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"", "Baseball", "Football", "Hockey", "Basketball"}));
+        comboBox.setBounds(131, 351, 126, 20);
+        contentPane.add(comboBox);
+
         // SUBMIT Button
         JButton btnNewButton = new JButton("SUBMIT");
         btnNewButton.addActionListener(new ActionListener() {
@@ -137,7 +136,10 @@ public class dataEntry extends JFrame
                         textField_3.getText(),
                         textField_4.getText(),
                         textField_5.getText(),
-                        textField_6.getText());
+                        textField_6.getText(),
+                        major,
+                        comboBox.getSelectedItem().toString(),
+                        education_level);
 
                 textField.setText("");
                 textField_1.setText("");
@@ -162,22 +164,28 @@ public class dataEntry extends JFrame
         btnNewButton_1.setBounds(628, 401, 89, 23);
         contentPane.add(btnNewButton_1);
 
-        // Drop down box
-        JComboBox<Object> comboBox = new JComboBox<Object>();
-        comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"", "Baseball", "Football", "Hockey", "Basketball"}));
-        comboBox.setBounds(131, 351, 126, 20);
-        contentPane.add(comboBox);
-
         JLabel lblNewLabel = new JLabel("Select Sport");
         lblNewLabel.setBounds(10, 354, 74, 14);
         contentPane.add(lblNewLabel);
 
         JRadioButton rdbtnNewRadioButton = new JRadioButton("Computer Science");
         rdbtnNewRadioButton.setBounds(448, 21, 142, 23);
+        rdbtnNewRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                major = "Computer Science";
+            }
+        });
         contentPane.add(rdbtnNewRadioButton);
 
         JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Information Science");
         rdbtnNewRadioButton_1.setBounds(448, 66, 162, 23);
+        rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                major = "Information Science";
+            }
+        });
         contentPane.add(rdbtnNewRadioButton_1);
 
 
@@ -225,14 +233,32 @@ public class dataEntry extends JFrame
         // check boxes
         JCheckBox chckbxNewCheckBox = new JCheckBox("Undergraduate");
         chckbxNewCheckBox.setBounds(448, 148, 131, 23);
+        chckbxNewCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                education_level = "Undergraduate";
+            }
+        });
         contentPane.add(chckbxNewCheckBox);
 
         JCheckBox chckbxNewCheckBox_1 = new JCheckBox("Graduate");
         chckbxNewCheckBox_1.setBounds(448, 188, 97, 23);
+        chckbxNewCheckBox_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                education_level = "Graduate";
+            }
+        });
         contentPane.add(chckbxNewCheckBox_1);
 
         JCheckBox chckbxNewCheckBox_2 = new JCheckBox("PhD");
         chckbxNewCheckBox_2.setBounds(448, 233, 97, 23);
+        chckbxNewCheckBox_2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                education_level = "PhD";
+            }
+        });
         contentPane.add(chckbxNewCheckBox_2);
 
         this.setLocationRelativeTo(null);
