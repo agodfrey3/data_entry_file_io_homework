@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.awt.event.ActionEvent;
+import java.net.InetAddress;
 
 public class dataEntry extends JFrame
 {
@@ -130,16 +131,20 @@ public class dataEntry extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 fileIO fl = new fileIO();
-                fl.wrTransactionData(textField.getText(),
-                        textField_1.getText(),
-                        textField_2.getText(),
-                        textField_3.getText(),
-                        textField_4.getText(),
-                        textField_5.getText(),
-                        textField_6.getText(),
-                        major,
-                        comboBox.getSelectedItem().toString(),
-                        education_level);
+                String message = textField.getText() + " " + textField_1.getText() + " "
+                        + textField_2.getText() + " " + textField_3.getText() + " " + textField_4.getText() + " "
+                        + textField_5.getText() + " " + textField_6.getText() + " " + major + " "
+                        + comboBox.getSelectedItem().toString() + " " + education_level;
+
+                fl.wrTransactionData(message);
+
+                try {
+                    InetAddress ip = InetAddress.getByName("127.0.0.1");
+                    Client client = new Client(ip, 3333, message);
+                    client.run();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
 
                 textField.setText("");
                 textField_1.setText("");

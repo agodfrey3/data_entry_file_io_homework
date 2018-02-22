@@ -7,9 +7,7 @@ import java.util.Date;
 
 public class fileIO
 {
-    public void wrTransactionData(String fn, String ln, String ad, String city,
-                                  String state, String zip, String email, String major, String sport,
-                                  String education_level) {
+    public void wrTransactionData(String message) {
         // output the gold header information
         FileWriter fwg = null;
         try
@@ -26,9 +24,7 @@ public class fileIO
 
         String timeStamp = new SimpleDateFormat("MM-dd-yyyy HH.mm.ss").format(new Date());
 
-        outg.println(timeStamp + " : "+ fn + " " + ln + " "
-                + ad + " " + city + " " + state + " " + zip + " "
-                + email + " " + major + " " + sport + " " + education_level);
+        outg.println(timeStamp + " : " + message);
 
         outg.close();
     }
